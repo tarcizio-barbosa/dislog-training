@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 
 import { UserEntity } from "../../entities/UserEntity";
 import { ICreateUserDTO } from "../../useCases/ICreateUserDTO";
-import { IUsersRepository } from "../IUsersRepository";
+import { IUsersRepository, UserCreatedData } from "../IUsersRepository";
 
 export class InMemoryUsersRepository implements IUsersRepository {
   private users: UserEntity[] = [];
@@ -11,7 +11,7 @@ export class InMemoryUsersRepository implements IUsersRepository {
     userName,
     userEmail,
     userPassword,
-  }: ICreateUserDTO): Promise<User> {
+  }: ICreateUserDTO): Promise<UserCreatedData> {
     const newUser = new UserEntity();
 
     Object.assign(newUser, {
