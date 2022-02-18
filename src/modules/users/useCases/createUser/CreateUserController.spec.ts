@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import request from "supertest";
 
-import { app } from "../../../shared/infra/http/app";
-import prismaClient from "../../../shared/infra/prisma/prismaClient";
+import { app } from "../../../../shared/infra/http/app";
+import prismaClient from "../../../../shared/infra/prisma/prismaClient";
 
 describe("Create User", () => {
   beforeAll(async () => {

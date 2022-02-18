@@ -5,7 +5,7 @@ import { inject, injectable } from "tsyringe";
 import {
   IUsersRepository,
   UserCreatedData,
-} from "../repositories/IUsersRepository";
+} from "../../repositories/IUsersRepository";
 import { CreateUserError } from "./CreateUserError";
 import { ICreateUserDTO } from "./ICreateUserDTO";
 
