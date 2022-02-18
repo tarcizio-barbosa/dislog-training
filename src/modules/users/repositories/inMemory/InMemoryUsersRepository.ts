@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 
 import { UserEntity } from "../../entities/UserEntity";
-import { ICreateUserDTO } from "../../useCases/ICreateUserDTO";
+import { ICreateUserDTO } from "../../useCases/createUser/ICreateUserDTO";
 import { IUsersRepository, UserCreatedData } from "../IUsersRepository";
 
 export class InMemoryUsersRepository implements IUsersRepository {

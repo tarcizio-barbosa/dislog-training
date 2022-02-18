@@ -1,6 +1,6 @@
 import { Prisma, User } from "@prisma/client";
 
-import { ICreateUserDTO } from "../useCases/ICreateUserDTO";
+import { ICreateUserDTO } from "../useCases/createUser/ICreateUserDTO";
 
 const userCreatedData = Prisma.validator<Prisma.UserArgs>()({
   select: {
