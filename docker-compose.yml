@@ -11,3 +11,13 @@ services:
       - POSTGRES_USER=tarcizio
       - POSTGRES_PASSWORD=k9sonwow
       - POSTGRES_DB=dislogtraining
+  dbtest:
+    image: postgres:latest
+    restart: always
+    container_name: dislog-training-test
+    ports:
+      - '5433:5433'
+    environment:
+      - POSTGRES_USER=tarcizio
+      - POSTGRES_PASSWORD=k9sonwow
+      - POSTGRES_DB=dislogtrainingtest
