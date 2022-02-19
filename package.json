@@ -13,6 +13,9 @@
     "prisma:migrate": "dotenv -e .env prisma migrate dev --name",
     "prisma:studio": "dotenv -e .env prisma studio"
   },
+  "prisma": {
+    "seed": "ts-node-dev prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "3.9.2",
     "@types/express": "^4.17.13",
