@@ -30,7 +30,7 @@ export class UsersRepository implements IUsersRepository {
     });
   }
 
-  async getUserByEmail(userEmail: string): Promise<User> {
+  async getUserByEmail(userEmail: string): Promise<User | null> {
     return this.repository.user.findUnique({
       where: {
         userEmail,
