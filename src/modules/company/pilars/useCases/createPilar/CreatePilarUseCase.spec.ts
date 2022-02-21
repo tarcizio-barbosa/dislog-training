@@ -1,6 +1,6 @@
-import { InMemoryUsersRepository } from "../../../users/repositories/inMemory/InMemoryUsersRepository";
-import { CreateUserUseCase } from "../../../users/useCases/createUser/CreateUserUseCase";
-import { InMemoryPilarsRepository } from "../repositories/inMemory/InMemoryPilarsRepository";
+import { InMemoryUsersRepository } from "../../../../users/repositories/inMemory/InMemoryUsersRepository";
+import { CreateUserUseCase } from "../../../../users/useCases/createUser/CreateUserUseCase";
+import { InMemoryPilarsRepository } from "../../repositories/inMemory/InMemoryPilarsRepository";
 import { CreatePilarError } from "./CreatePilarError";
 import { CreatePilarUseCase } from "./CreatePilarUserCase";
 

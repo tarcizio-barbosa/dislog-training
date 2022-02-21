@@ -1,7 +1,7 @@
 import { Pilar, PrismaClient } from "@prisma/client";
 
 import prismaClient from "../../../../shared/infra/prisma/prismaClient";
-import { ICreatePilarDTO } from "../useCases/ICreatePilarDTO";
+import { ICreatePilarDTO } from "../useCases/createPilar/ICreatePilarDTO";
 import { IPilarsRepository, PilarCreatedData } from "./IPilarsRepository";
 
 export class PilarsRepository implements IPilarsRepository {

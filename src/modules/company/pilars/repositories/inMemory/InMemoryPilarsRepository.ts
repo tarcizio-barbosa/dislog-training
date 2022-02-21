@@ -1,7 +1,7 @@
 import { Pilar } from "@prisma/client";
 
 import { PilarEntity } from "../../entities/PilarEntity";
-import { ICreatePilarDTO } from "../../useCases/ICreatePilarDTO";
+import { ICreatePilarDTO } from "../../useCases/createPilar/ICreatePilarDTO";
 import { IPilarsRepository, PilarCreatedData } from "../IPilarsRepository";
 
 export class InMemoryPilarsRepository implements IPilarsRepository {

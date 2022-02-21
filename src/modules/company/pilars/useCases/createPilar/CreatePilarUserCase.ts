@@ -4,7 +4,7 @@ import { inject, injectable } from "tsyringe";
 import {
   IPilarsRepository,
   PilarCreatedData,
-} from "../repositories/IPilarsRepository";
+} from "../../repositories/IPilarsRepository";
 import { CreatePilarError } from "./CreatePilarError";
 import { ICreatePilarDTO } from "./ICreatePilarDTO";
 

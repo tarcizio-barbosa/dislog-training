@@ -1,6 +1,6 @@
 import { Pilar, Prisma } from "@prisma/client";
 
-import { ICreatePilarDTO } from "../useCases/ICreatePilarDTO";
+import { ICreatePilarDTO } from "../useCases/createPilar/ICreatePilarDTO";
 
 const pilarCreatedData = Prisma.validator<Prisma.PilarArgs>()({
   select: {

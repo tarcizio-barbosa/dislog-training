@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import request from "supertest";
 
-import { app } from "../../../../shared/infra/http/app";
-import prismaClient from "../../../../shared/infra/prisma/prismaClient";
-import { ICreateUserDTO } from "../../../users/useCases/createUser/ICreateUserDTO";
+import { app } from "../../../../../shared/infra/http/app";
+import prismaClient from "../../../../../shared/infra/prisma/prismaClient";
+import { ICreateUserDTO } from "../../../../users/useCases/createUser/ICreateUserDTO";
 
 describe("Create Pilar", () => {
   beforeAll(async () => {
