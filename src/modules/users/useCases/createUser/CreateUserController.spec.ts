@@ -10,9 +10,10 @@ describe("Create User", () => {
   });
 
   afterAll(async () => {
+    const deletePilars = prismaClient.pilar.deleteMany();
     const deleteUsers = prismaClient.user.deleteMany();
 
-    await prismaClient.$transaction([deleteUsers]);
+    await prismaClient.$transaction([deletePilars, deleteUsers]);
 
     await prismaClient.$disconnect();
   });

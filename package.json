@@ -10,8 +10,8 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "test": "yarn docker:up && dotenv -e .env.test jest -i",
-    "prisma:migrate": "dotenv -e .env prisma migrate dev --name",
-    "prisma:studio": "dotenv -e .env prisma studio"
+    "prisma:migrate": "dotenv -e .env.test prisma migrate dev",
+    "prisma:studio": "dotenv -e .env.test prisma studio"
   },
   "prisma": {
     "seed": "ts-node-dev prisma/seed.ts"
