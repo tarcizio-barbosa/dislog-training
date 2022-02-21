@@ -5,7 +5,7 @@ import { app } from "../../../../../shared/infra/http/app";
 import prismaClient from "../../../../../shared/infra/prisma/prismaClient";
 import { ICreateUserDTO } from "../../../../users/useCases/createUser/ICreateUserDTO";
 
-describe("Create Pilar", () => {
+describe("Create Area", () => {
   beforeEach(async () => {
     await prismaClient.$connect();
   });
@@ -20,7 +20,7 @@ describe("Create Pilar", () => {
     await prismaClient.$disconnect();
   });
 
-  it("Should be able to create a new Pilar", async () => {
+  it("Should be able to create a new Area", async () => {
     const newUser: ICreateUserDTO = {
       userName: "Tarcizio",
       userEmail: "tarcizio@io.com.br",
@@ -46,6 +46,18 @@ describe("Create Pilar", () => {
         Authorization: `Bearer ${userToken}`,
       });
 
-    expect(newPilar.status).toBe(201);
+    const { id } = newPilar.body;
+
+    const newArea = await request(app)
+      .post("/areas")
+      .send({
+        areaName: "Atendimento",
+        pilarId: id,
+      })
+      .set({
+        Authorization: `Bearer ${userToken}`,
+      });
+
+    expect(newArea.status).toBe(201);
   });
 });

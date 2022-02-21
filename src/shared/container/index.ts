@@ -1,5 +1,7 @@
 import { container } from "tsyringe";
 
+import { AreasRepository } from "../../modules/company/areas/repositories/AreasRepository";
+import { IAreasRepository } from "../../modules/company/areas/repositories/IAreasRepository";
 import { IPilarsRepository } from "../../modules/company/pilars/repositories/IPilarsRepository";
 import { PilarsRepository } from "../../modules/company/pilars/repositories/PilarsRepository";
 import { IUsersRepository } from "../../modules/users/repositories/IUsersRepository";
@@ -13,4 +15,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IPilarsRepository>(
   "PilarsRepository",
   PilarsRepository
+);
+
+container.registerSingleton<IAreasRepository>(
+  "AreasRepository",
+  AreasRepository
 );

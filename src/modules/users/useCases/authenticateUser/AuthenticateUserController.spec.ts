@@ -6,15 +6,16 @@ import prismaClient from "../../../../shared/infra/prisma/prismaClient";
 import { ICreateUserDTO } from "../createUser/ICreateUserDTO";
 
 describe("Authenticate User", () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     await prismaClient.$connect();
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
+    const deleteAreas = prismaClient.area.deleteMany();
     const deletePilars = prismaClient.pilar.deleteMany();
     const deleteUsers = prismaClient.user.deleteMany();
 
-    await prismaClient.$transaction([deletePilars, deleteUsers]);
+    await prismaClient.$transaction([deleteAreas, deletePilars, deleteUsers]);
 
     await prismaClient.$disconnect();
   });

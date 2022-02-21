@@ -1,3 +1,6 @@
+import "reflect-metadata";
+import { inject, injectable } from "tsyringe";
+
 import { IPilarsRepository } from "../../../pilars/repositories/IPilarsRepository";
 import {
   AreaCreatedData,
@@ -7,9 +10,12 @@ import { CreateAreaError } from "./CreateAreaError";
 import { GetPilarError } from "./GetPilarError";
 import { ICreateAreaDTO } from "./ICreateAreaDTO";
 
+@injectable()
 export class CreateAreaUseCase {
   constructor(
+    @inject("AreasRepository")
     private areasRepository: IAreasRepository,
+    @inject("PilarsRepository")
     private pilarsRepository: IPilarsRepository
   ) {}
 

@@ -5,15 +5,16 @@ import { app } from "../../../../shared/infra/http/app";
 import prismaClient from "../../../../shared/infra/prisma/prismaClient";
 
 describe("Create User", () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     await prismaClient.$connect();
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
+    const deleteAreas = prismaClient.area.deleteMany();
     const deletePilars = prismaClient.pilar.deleteMany();
     const deleteUsers = prismaClient.user.deleteMany();
 
-    await prismaClient.$transaction([deletePilars, deleteUsers]);
+    await prismaClient.$transaction([deleteAreas, deletePilars, deleteUsers]);
 
     await prismaClient.$disconnect();
   });
