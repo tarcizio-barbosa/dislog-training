@@ -14,4 +14,5 @@ export type PilarCreatedData = Prisma.PilarGetPayload<typeof pilarCreatedData>;
 export interface IPilarsRepository {
   createPilar(data: ICreatePilarDTO): Promise<PilarCreatedData>;
   getPilarByName(pilarName: string): Promise<Pilar | null>;
+  getPilarById(pilarId: string): Promise<Pilar | null>;
 }

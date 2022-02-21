@@ -24,7 +24,12 @@ export class InMemoryPilarsRepository implements IPilarsRepository {
 
     return newPilar;
   }
+
   async getPilarByName(pilarName: string): Promise<Pilar | null> {
     return this.pilars.find((pilar) => pilar.pilarName === pilarName);
+  }
+
+  async getPilarById(pilarId: string): Promise<Pilar | null> {
+    return this.pilars.find((pilar) => pilar.id === pilarId);
   }
 }

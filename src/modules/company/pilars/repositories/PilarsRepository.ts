@@ -28,10 +28,19 @@ export class PilarsRepository implements IPilarsRepository {
       },
     });
   }
-  getPilarByName(pilarName: string): Promise<Pilar | null> {
+
+  async getPilarByName(pilarName: string): Promise<Pilar | null> {
     return this.repository.pilar.findUnique({
       where: {
         pilarName,
+      },
+    });
+  }
+
+  async getPilarById(pilarId: string): Promise<Pilar | null> {
+    return this.repository.pilar.findUnique({
+      where: {
+        id: pilarId,
       },
     });
   }
