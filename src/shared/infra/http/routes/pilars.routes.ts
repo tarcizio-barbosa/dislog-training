@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { CreatePilarController } from "../../../../modules/company/pilar/useCases/CreatePilarController";
+import { CreatePilarController } from "../../../../modules/company/pilars/useCases/CreatePilarController";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const pilarsRoutes = Router();
