@@ -17,6 +17,7 @@ model User {
   Pilars       Pilar[]
   Areas        Area[]
   Activities   Activity[]
+  Employees    Employee[]
 }
 
 model Pilar {
@@ -43,12 +44,25 @@ model Area {
 }
 
 model Activity {
+  id           String     @id @default(uuid())
+  activityName String     @unique @db.VarChar()
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  area         Area       @relation(fields: [areaId], references: [id])
+  areaId       String
+  createdBy    User       @relation(fields: [userId], references: [id])
+  userId       String
+  Employees    Employee[]
+}
+
+model Employee {
   id           String   @id @default(uuid())
-  activityName String   @unique @db.VarChar()
+  employeeCode Int      @unique
+  employeeName String   @db.VarChar()
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  area         Area     @relation(fields: [areaId], references: [id])
-  areaId       String
+  activity     Activity @relation(fields: [activityId], references: [id])
+  activityId   String
   createdBy    User     @relation(fields: [userId], references: [id])
   userId       String
 }
