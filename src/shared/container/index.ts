@@ -1,9 +1,11 @@
-import { container, delay } from "tsyringe";
+import { container } from "tsyringe";
 
 import { ActivitiesRepository } from "../../modules/company/activities/repositories/ActivitiesRepository";
 import { IActivitiesRepository } from "../../modules/company/activities/repositories/IActivitiesRepository";
 import { AreasRepository } from "../../modules/company/areas/repositories/AreasRepository";
 import { IAreasRepository } from "../../modules/company/areas/repositories/IAreasRepository";
+import { EmployeesRepository } from "../../modules/company/employees/repositories/EmployeesRepository";
+import { IEmployeesRepository } from "../../modules/company/employees/repositories/IEmployeesRepository";
 import { IPilarsRepository } from "../../modules/company/pilars/repositories/IPilarsRepository";
 import { PilarsRepository } from "../../modules/company/pilars/repositories/PilarsRepository";
 import { IUsersRepository } from "../../modules/users/repositories/IUsersRepository";
@@ -27,4 +29,9 @@ container.registerSingleton<IAreasRepository>(
 container.registerSingleton<IActivitiesRepository>(
   "ActivitiesRepository",
   ActivitiesRepository
+);
+
+container.registerSingleton<IEmployeesRepository>(
+  "EmployeesRepository",
+  EmployeesRepository
 );

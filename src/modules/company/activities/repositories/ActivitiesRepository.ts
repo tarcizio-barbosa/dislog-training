@@ -19,7 +19,7 @@ export class ActivitiesRepository implements IActivitiesRepository {
     areaId,
     userId,
   }: ICreateActivityDTO): Promise<ActivityCreatedData> {
-    return await this.repository.activity.create({
+    return this.repository.activity.create({
       data: {
         activityName,
         areaId,
@@ -37,6 +37,14 @@ export class ActivitiesRepository implements IActivitiesRepository {
     return this.repository.activity.findUnique({
       where: {
         activityName,
+      },
+    });
+  }
+
+  async getActivityById(activityId: string): Promise<Activity | null> {
+    return this.repository.activity.findUnique({
+      where: {
+        id: activityId,
       },
     });
   }

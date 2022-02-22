@@ -17,4 +17,5 @@ export type ActivityCreatedData = Prisma.ActivityGetPayload<
 export interface IActivitiesRepository {
   createActivity(data: ICreateActivityDTO): Promise<ActivityCreatedData>;
   getActivityByName(activityName: string): Promise<Activity | null>;
+  getActivityById(activityId: string): Promise<Activity | null>;
 }

@@ -33,4 +33,8 @@ export class InMemoryActivitiesRepository implements IActivitiesRepository {
       (activity) => activity.activityName === activityName
     );
   }
+
+  async getActivityById(activityId: string): Promise<Activity | null> {
+    return this.activities.find((activity) => activity.id === activityId);
+  }
 }
