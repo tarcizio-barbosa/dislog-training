@@ -5,19 +5,19 @@ import { app } from "../../../../../shared/infra/http/app";
 import prismaClient from "../../../../../shared/infra/prisma/prismaClient";
 import { ICreateUserDTO } from "../../../../users/useCases/createUser/ICreateUserDTO";
 
-describe("Create Pilar", () => {
+describe("Create Activity", () => {
   beforeEach(async () => {
     await prismaClient.$connect();
   });
 
   afterEach(async () => {
-    // const deleteActivities = prismaClient.activity.deleteMany();
+    const deleteActivities = prismaClient.activity.deleteMany();
     const deleteAreas = prismaClient.area.deleteMany();
     const deletePilars = prismaClient.pilar.deleteMany();
     const deleteUsers = prismaClient.user.deleteMany();
 
     await prismaClient.$transaction([
-      // deleteActivities,
+      deleteActivities,
       deleteAreas,
       deletePilars,
       deleteUsers,
@@ -26,7 +26,7 @@ describe("Create Pilar", () => {
     await prismaClient.$disconnect();
   });
 
-  it("Should be able to create a new Pilar", async () => {
+  it("Should be able to create a new Activity", async () => {
     const newUser: ICreateUserDTO = {
       userName: "Tarcizio",
       userEmail: "tarcizio@io.com.br",
@@ -52,6 +52,30 @@ describe("Create Pilar", () => {
         Authorization: `Bearer ${userToken}`,
       });
 
-    expect(newPilar.status).toBe(201);
+    const { id: pilarId } = newPilar.body;
+
+    const newArea = await request(app)
+      .post("/areas")
+      .send({
+        areaName: "Atendimento",
+        pilarId,
+      })
+      .set({
+        Authorization: `Bearer ${userToken}`,
+      });
+
+    const { id: areaId } = newArea.body;
+
+    const newActivity = await request(app)
+      .post("/activities")
+      .send({
+        activityName: "Auxiliar de Qualidade - Auditoria de Pedidos",
+        areaId,
+      })
+      .set({
+        Authorization: `Bearer ${userToken}`,
+      });
+
+    expect(newActivity.status).toBe(201);
   });
 });

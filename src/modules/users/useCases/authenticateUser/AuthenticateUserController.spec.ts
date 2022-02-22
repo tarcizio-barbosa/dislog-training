@@ -11,11 +11,17 @@ describe("Authenticate User", () => {
   });
 
   afterEach(async () => {
+    // const deleteActivities = prismaClient.activity.deleteMany();
     const deleteAreas = prismaClient.area.deleteMany();
     const deletePilars = prismaClient.pilar.deleteMany();
     const deleteUsers = prismaClient.user.deleteMany();
 
-    await prismaClient.$transaction([deleteAreas, deletePilars, deleteUsers]);
+    await prismaClient.$transaction([
+      // deleteActivities,
+      deleteAreas,
+      deletePilars,
+      deleteUsers,
+    ]);
 
     await prismaClient.$disconnect();
   });

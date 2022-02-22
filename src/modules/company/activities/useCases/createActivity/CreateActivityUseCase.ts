@@ -1,3 +1,6 @@
+import "reflect-metadata";
+import { inject, injectable } from "tsyringe";
+
 import { IAreasRepository } from "../../../areas/repositories/IAreasRepository";
 import {
   ActivityCreatedData,
@@ -7,11 +10,15 @@ import { CreateActivityError } from "./CreateActivityError";
 import { GetAreaError } from "./GetAreaError";
 import { ICreateActivityDTO } from "./ICreateActivityDTO";
 
+@injectable()
 export class CreateActivityUseCase {
   constructor(
+    @inject("ActivitiesRepository")
     private activitiesRepository: IActivitiesRepository,
+    @inject("AreasRepository")
     private areasRepository: IAreasRepository
   ) {}
+
   async execute({
     activityName,
     areaId,

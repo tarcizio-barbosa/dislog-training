@@ -11,11 +11,17 @@ describe("Create Area", () => {
   });
 
   afterEach(async () => {
+    // const deleteActivities = prismaClient.activity.deleteMany();
     const deleteAreas = prismaClient.area.deleteMany();
     const deletePilars = prismaClient.pilar.deleteMany();
     const deleteUsers = prismaClient.user.deleteMany();
 
-    await prismaClient.$transaction([deleteAreas, deletePilars, deleteUsers]);
+    await prismaClient.$transaction([
+      // deleteActivities,
+      deleteAreas,
+      deletePilars,
+      deleteUsers,
+    ]);
 
     await prismaClient.$disconnect();
   });
@@ -46,13 +52,13 @@ describe("Create Area", () => {
         Authorization: `Bearer ${userToken}`,
       });
 
-    const { id } = newPilar.body;
+    const { id: pilarId } = newPilar.body;
 
     const newArea = await request(app)
       .post("/areas")
       .send({
         areaName: "Atendimento",
-        pilarId: id,
+        pilarId,
       })
       .set({
         Authorization: `Bearer ${userToken}`,

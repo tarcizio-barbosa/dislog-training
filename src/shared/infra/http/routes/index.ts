@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import { activitiesRoutes } from "./activities.routes";
 import { areasRoutes } from "./areas.routes";
 import { pilarsRoutes } from "./pilars.routes";
 import { sessionsRoutes } from "./sessions.routes";
@@ -11,5 +12,6 @@ router.use("/users", usersRoutes);
 router.use("/sessions", sessionsRoutes);
 router.use("/pilars", pilarsRoutes);
 router.use("/areas", areasRoutes);
+router.use("/activities", activitiesRoutes);
 
 export { router };
