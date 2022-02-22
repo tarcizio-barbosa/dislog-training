@@ -3,27 +3,47 @@ import { PrismaClient } from "@prisma/client";
 const prismaClient = new PrismaClient();
 
 async function main() {
-  const tarcizio = await prismaClient.user.upsert({
-    where: { userEmail: "tarcizio@dislog.com.br" },
+  const userDefault = await prismaClient.user.upsert({
+    where: { userEmail: "dislog@dislog.com.br" },
     update: {},
     create: {
-      userEmail: "tarcizio@dislog.com.br",
-      userName: "Tarcizio Barbosa",
-      userPassword: "k9sonwow11",
+      userEmail: "dislog@dislog.com.br",
+      userName: "Dislog Default",
+      userPassword: "12345",
     },
   });
 
-  const bruna = await prismaClient.user.upsert({
-    where: { userEmail: "bruna@dislog.com.br" },
+  const pilar = await prismaClient.pilar.upsert({
+    where: { pilarName: "Qualidade" },
     update: {},
     create: {
-      userEmail: "bruna@dislog.com.br",
-      userName: "Bruna Silva",
-      userPassword: "k9sonwow12",
+      pilarName: "Qualidade",
+      pilarManager: "Jakeline Silva",
+      userId: userDefault.id,
     },
   });
 
-  console.log({ tarcizio, bruna });
+  const area = await prismaClient.area.upsert({
+    where: { areaName: "Atendimento" },
+    update: {},
+    create: {
+      areaName: "Atendimento",
+      pilarId: pilar.id,
+      userId: userDefault.id,
+    },
+  });
+
+  const activity = await prismaClient.activity.upsert({
+    where: { activityName: "Auxiliar de Qualidade - Auditoria de Pedidos" },
+    update: {},
+    create: {
+      activityName: "Auxiliar de Qualidade - Auditoria de Pedidos",
+      areaId: area.id,
+      userId: userDefault.id,
+    },
+  });
+
+  console.log({ userDefault, pilar, area, activity });
 }
 
 main()
