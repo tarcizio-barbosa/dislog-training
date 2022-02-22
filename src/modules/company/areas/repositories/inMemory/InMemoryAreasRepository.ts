@@ -28,4 +28,8 @@ export class InMemoryAreasRepository implements IAreasRepository {
   async getAreaByName(areaName: string): Promise<Area | null> {
     return this.areas.find((area) => area.areaName === areaName);
   }
+
+  async getAreaById(areaId: string): Promise<Area | null> {
+    return this.areas.find((area) => area.id === areaId);
+  }
 }

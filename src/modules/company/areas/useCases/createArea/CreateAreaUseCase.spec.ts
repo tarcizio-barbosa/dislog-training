@@ -79,7 +79,7 @@ describe("Create Pilar", () => {
     ).rejects.toEqual(new CreateAreaError());
   });
 
-  it("Should not be able to create a new Area if the pillar doesn't exist", async () => {
+  it("Should not be able to create a new Area if the pilar doesn't exist", async () => {
     const newUser = await createUserUseCase.execute({
       userName: "Tarcizio Barbosa",
       userEmail: "tarcizio@io.com.br",

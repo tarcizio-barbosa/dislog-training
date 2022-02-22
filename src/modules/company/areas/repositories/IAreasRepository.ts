@@ -15,4 +15,5 @@ export type AreaCreatedData = Prisma.AreaGetPayload<typeof areaCreatedData>;
 export interface IAreasRepository {
   createArea(data: ICreateAreaDTO): Promise<AreaCreatedData>;
   getAreaByName(areaName: string): Promise<Area | null>;
+  getAreaById(areaId: string): Promise<Area | null>;
 }

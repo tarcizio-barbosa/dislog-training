@@ -37,4 +37,12 @@ export class AreasRepository implements IAreasRepository {
       },
     });
   }
+
+  async getAreaById(areaId: string): Promise<Area | null> {
+    return this.repository.area.findUnique({
+      where: {
+        id: areaId,
+      },
+    });
+  }
 }
