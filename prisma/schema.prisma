@@ -8,17 +8,18 @@ datasource db {
 }
 
 model User {
-  id           String     @id @default(uuid())
-  userName     String     @db.VarChar()
-  userEmail    String     @unique @db.VarChar()
-  userPassword String     @db.VarChar(100)
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  Pilars       Pilar[]
-  Areas        Area[]
-  Activities   Activity[]
-  Employees    Employee[]
-  Documents    Document[]
+  id                    String                  @id @default(uuid())
+  userName              String                  @db.VarChar()
+  userEmail             String                  @unique @db.VarChar()
+  userPassword          String                  @db.VarChar(100)
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  Pilars                Pilar[]
+  Areas                 Area[]
+  Activities            Activity[]
+  Employees             Employee[]
+  Documents             Document[]
+  DocumentsOnActivities DocumentsOnActivities[]
 }
 
 model Pilar {
@@ -45,15 +46,16 @@ model Area {
 }
 
 model Activity {
-  id           String     @id @default(uuid())
-  activityName String     @unique @db.VarChar()
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  area         Area       @relation(fields: [areaId], references: [id])
-  areaId       String
-  createdBy    User       @relation(fields: [userId], references: [id])
-  userId       String
-  Employees    Employee[]
+  id                    String                  @id @default(uuid())
+  activityName          String                  @unique @db.VarChar()
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  area                  Area                    @relation(fields: [areaId], references: [id])
+  areaId                String
+  createdBy             User                    @relation(fields: [userId], references: [id])
+  userId                String
+  Employees             Employee[]
+  DocumentsOnActivities DocumentsOnActivities[]
 }
 
 model Employee {
@@ -69,15 +71,28 @@ model Employee {
 }
 
 model Document {
-  id             String       @id @default(uuid())
-  documentCode   String       @unique @db.VarChar()
-  documentName   String       @db.VarChar()
-  documentStatus Boolean      @default(true)
-  documentType   DocumentType
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  createdBy      User         @relation(fields: [userId], references: [id])
-  userId         String
+  id                    String                  @id @default(uuid())
+  documentCode          String                  @unique @db.VarChar()
+  documentName          String                  @db.VarChar()
+  documentStatus        Boolean                 @default(true)
+  documentType          DocumentType
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  createdBy             User                    @relation(fields: [userId], references: [id])
+  userId                String
+  DocumentsOnActivities DocumentsOnActivities[]
+}
+
+model DocumentsOnActivities {
+  activity   Activity @relation(fields: [activityId], references: [id])
+  activityId String
+  document   Document @relation(fields: [documentId], references: [id])
+  documentId String
+  assignedAt DateTime @default(now())
+  createdBy  User     @relation(fields: [userId], references: [id])
+  userId     String
+
+  @@id([activityId, documentId])
 }
 
 enum DocumentType {
