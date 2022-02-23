@@ -42,4 +42,12 @@ export class DocumentsRepository implements IDocumentsRepository {
       },
     });
   }
+
+  async getDocumentById(documentId: string): Promise<Document | null> {
+    return this.repository.document.findUnique({
+      where: {
+        id: documentId,
+      },
+    });
+  }
 }

@@ -17,4 +17,5 @@ export type DocumentCreatedData = Prisma.DocumentGetPayload<
 export interface IDocumentsRepository {
   createDocument(data: ICreateDocumentDTO): Promise<DocumentCreatedData>;
   getDocumentByCode(documentCode: string): Promise<Document | null>;
+  getDocumentById(documentId: string): Promise<Document | null>;
 }

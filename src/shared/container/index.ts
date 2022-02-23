@@ -8,7 +8,9 @@ import { EmployeesRepository } from "../../modules/company/employees/repositorie
 import { IEmployeesRepository } from "../../modules/company/employees/repositories/IEmployeesRepository";
 import { IPilarsRepository } from "../../modules/company/pilars/repositories/IPilarsRepository";
 import { PilarsRepository } from "../../modules/company/pilars/repositories/PilarsRepository";
+import { DocumentsActivitiesRepository } from "../../modules/documents/repositories/DocumentsActivitiesRepository";
 import { DocumentsRepository } from "../../modules/documents/repositories/DocumentsRepository";
+import { IDocumentsActivitiesRepository } from "../../modules/documents/repositories/IDocumentsActivitiesRepository";
 import { IDocumentsRepository } from "../../modules/documents/repositories/IDocumentsRepository";
 import { IUsersRepository } from "../../modules/users/repositories/IUsersRepository";
 import { UsersRepository } from "../../modules/users/repositories/UsersRepository";
@@ -41,4 +43,9 @@ container.registerSingleton<IEmployeesRepository>(
 container.registerSingleton<IDocumentsRepository>(
   "DocumentsRepository",
   DocumentsRepository
+);
+
+container.registerSingleton<IDocumentsActivitiesRepository>(
+  "DocumentsActivitiesRepository",
+  DocumentsActivitiesRepository
 );
