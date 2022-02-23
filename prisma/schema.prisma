@@ -59,15 +59,16 @@ model Activity {
 }
 
 model Employee {
-  id           String   @id @default(uuid())
-  employeeCode Int      @unique
-  employeeName String   @db.VarChar()
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  activity     Activity @relation(fields: [activityId], references: [id])
+  id           String     @id @default(uuid())
+  employeeCode Int        @unique
+  employeeName String     @db.VarChar()
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  activity     Activity   @relation(fields: [activityId], references: [id])
   activityId   String
-  createdBy    User     @relation(fields: [userId], references: [id])
+  createdBy    User       @relation(fields: [userId], references: [id])
   userId       String
+  Trainings    Training[]
 }
 
 model Document {
@@ -84,15 +85,31 @@ model Document {
 }
 
 model DocumentsOnActivities {
-  activity   Activity @relation(fields: [activityId], references: [id])
+  id         String     @id @default(uuid())
+  activity   Activity   @relation(fields: [activityId], references: [id])
   activityId String
-  document   Document @relation(fields: [documentId], references: [id])
+  document   Document   @relation(fields: [documentId], references: [id])
   documentId String
-  assignedAt DateTime @default(now())
-  createdBy  User     @relation(fields: [userId], references: [id])
+  assignedAt DateTime   @default(now())
+  createdBy  User       @relation(fields: [userId], references: [id])
   userId     String
+  Trainings  Training[]
 
-  @@id([activityId, documentId])
+  @@unique([activityId, documentId])
+}
+
+model Training {
+  id                      Int                   @id @default(autoincrement())
+  employee                Employee              @relation(fields: [employeeId], references: [id])
+  employeeId              String
+  documentsOnActivities   DocumentsOnActivities @relation(fields: [documentsOnActivitiesId], references: [id])
+  documentsOnActivitiesId String
+  isCompleted             Boolean               @default(false)
+  createdAt               DateTime              @default(now())
+  updatedAt               DateTime              @updatedAt
+  taughtBy                Int
+
+  @@unique([employeeId, documentsOnActivitiesId])
 }
 
 enum DocumentType {
