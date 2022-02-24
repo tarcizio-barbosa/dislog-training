@@ -107,7 +107,7 @@ model Training {
   isCompleted             Boolean               @default(false)
   createdAt               DateTime              @default(now())
   updatedAt               DateTime              @updatedAt
-  taughtBy                Int
+  taughtBy                Int?
 
   @@unique([employeeId, documentsOnActivitiesId])
 }
