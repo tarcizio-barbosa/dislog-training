@@ -18,4 +18,5 @@ export type EmployeeCreatedData = Prisma.EmployeeGetPayload<
 export interface IEmployeesRepository {
   createEmployee(data: ICreateEmployeeDTO): Promise<EmployeeCreatedData>;
   getEmployeeByCode(employeeCode: number): Promise<Employee | null>;
+  getEmployeeById(employeeId: string): Promise<Employee | null>;
 }

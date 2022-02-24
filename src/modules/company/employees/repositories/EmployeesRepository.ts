@@ -43,4 +43,12 @@ export class EmployeesRepository implements IEmployeesRepository {
       },
     });
   }
+
+  async getEmployeeById(employeeId: string): Promise<Employee | null> {
+    return this.repository.employee.findUnique({
+      where: {
+        id: employeeId,
+      },
+    });
+  }
 }

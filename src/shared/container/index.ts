@@ -12,6 +12,8 @@ import { DocumentsActivitiesRepository } from "../../modules/documents/repositor
 import { DocumentsRepository } from "../../modules/documents/repositories/DocumentsRepository";
 import { IDocumentsActivitiesRepository } from "../../modules/documents/repositories/IDocumentsActivitiesRepository";
 import { IDocumentsRepository } from "../../modules/documents/repositories/IDocumentsRepository";
+import { ITrainingsRepository } from "../../modules/trainings/repositories/ITrainingsRepository";
+import { TrainingRepository } from "../../modules/trainings/repositories/TrainingsRepository";
 import { IUsersRepository } from "../../modules/users/repositories/IUsersRepository";
 import { UsersRepository } from "../../modules/users/repositories/UsersRepository";
 
@@ -48,4 +50,9 @@ container.registerSingleton<IDocumentsRepository>(
 container.registerSingleton<IDocumentsActivitiesRepository>(
   "DocumentsActivitiesRepository",
   DocumentsActivitiesRepository
+);
+
+container.registerSingleton<ITrainingsRepository>(
+  "TrainingsRepository",
+  TrainingRepository
 );

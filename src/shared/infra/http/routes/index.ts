@@ -6,6 +6,7 @@ import { documentsRoutes } from "./documents.routes";
 import { employeesRoutes } from "./employees.routes";
 import { pilarsRoutes } from "./pilars.routes";
 import { sessionsRoutes } from "./sessions.routes";
+import { trainingsRoutes } from "./trainings.routes";
 import { usersRoutes } from "./users.routes";
 
 const router = Router();
@@ -17,5 +18,6 @@ router.use("/areas", areasRoutes);
 router.use("/activities", activitiesRoutes);
 router.use("/employees", employeesRoutes);
 router.use("/documents", documentsRoutes);
+router.use("/trainings", trainingsRoutes);
 
 export { router };

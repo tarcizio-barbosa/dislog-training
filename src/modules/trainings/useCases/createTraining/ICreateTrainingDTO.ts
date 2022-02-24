@@ -1,5 +1,5 @@
 export interface ICreateTrainingDTO {
   employeeId: string;
-  documentsOnActivitiesId: string;
-  taughtBy: number;
+  documentsOnActivitiesId?: string;
+  taughtBy?: number;
 }

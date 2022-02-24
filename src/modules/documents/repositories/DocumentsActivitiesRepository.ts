@@ -40,4 +40,14 @@ export class DocumentsActivitiesRepository
       },
     });
   }
+
+  async getDocumentsActivitiesByActivityId(
+    activityId: string
+  ): Promise<DocumentsOnActivities[]> {
+    return this.repository.documentsOnActivities.findMany({
+      where: {
+        activityId,
+      },
+    });
+  }
 }
